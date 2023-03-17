@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-primary text-white">Agular 8 - Login do Sistema</div>
+        <div class="card-body">
+          <form>
+
+            <div class="form-group">
+
+            </div>
+
+            <div class="form-group">
+              <label for="login">Login</label>
+              <input type="email" class="form-control" [(ngModel)]="usuario.login" id="login" name="login">
+            </div>
+            <div class="form-group">
+              <label>Senha</label>
+              <input type="password" class="form-control" [(ngModel)]="usuario.senha" id="senha" name="senha">
+            </div>
+
+            <button type="submit" class="btn btn-info" (click)="login()">Acessar o sistema</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
