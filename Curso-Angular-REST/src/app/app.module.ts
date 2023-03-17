@@ -13,9 +13,9 @@ import { UsuarioComponent } from './componente/usuario/usuario/usuario.component
 export const appRouters: Routes = [
 
   { path: 'home', component: HomeComponent },
-  { path: 'Login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent },
-  { path: 'userList', component: UsuarioComponent }
+  { path: 'usuarioList', component: UsuarioComponent }
 
 ];
 

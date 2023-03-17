@@ -3,23 +3,23 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class HeaderInterceptorService implements HttpInterceptor{
+export class HeaderInterceptorService implements HttpInterceptor {
 
   constructor() { }
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(localStorage.getItem('token') != null){
+    if (localStorage.getItem('token') != null) {
       const token = 'Bearer ' + localStorage.getItem('token');
 
       const tokenRequest = req.clone({
-        headers : req.headers.set('Authorization', token)
+        headers: req.headers.set('Authorization', token)
       });
 
       return next.handle(tokenRequest);
 
-    }else{
+    } else {
       return next.handle(req);
     }
 
@@ -27,14 +27,14 @@ export class HeaderInterceptorService implements HttpInterceptor{
 }
 
 @NgModule({
-  providers : [{
+  providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass:HeaderInterceptorService,
+    useClass: HeaderInterceptorService,
     multi: true,
   },
   ],
 })
 
-export class HttpInteceptorModule{
-  
+export class HttpInteceptorModule {
+
 }

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     if (localStorage.getItem('token') == null) {
-      this.router.navigate(['Login']);
+      this.router.navigate(['login']);
 
     }
 
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   public sair() {
     localStorage.clear();
-    this.router.navigate(['Login']);
+    this.router.navigate(['login']);
   }
 
 

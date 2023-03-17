@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 })
 export class LoginServiceService {
 
-  constructor(private http: HttpClient, private router : Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
-  login(usuario){
+  login(usuario) {
     return this.http.post(AppConstants.baseLogin, JSON.stringify(usuario)).subscribe(data => {
-      
+
       //corpo do retorno HTTP
       var token = (JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1]);
 
