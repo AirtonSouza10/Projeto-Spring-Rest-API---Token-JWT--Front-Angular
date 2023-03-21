@@ -1,5 +1,15 @@
 <div class="container">
 	<h1>Usuarios cadastrados</h1>
+
+	<form class="form-inline">
+	<div class="form-group mx-sm-3 mb-2">
+		<input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome" placeholder="Pesquisa por nome">
+	</div>
+	<button type="button" (click)="consultarUser()" class="btn btn-success mb-2">Buscar</button>
+	</form>
+
+
+
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>

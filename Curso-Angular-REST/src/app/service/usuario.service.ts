@@ -22,4 +22,9 @@ export class UsuarioService {
 
   }
 
+  consultarUser(nome: String): Observable<any> {
+
+    return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome);
+  }
+
 }
