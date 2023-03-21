@@ -1,19 +1,21 @@
-	<div class="container">
-		<h1>Usuarios cadastrados</h1>
-		<table class="table">
-			<thead class="thead-dark">
-				<tr>
-					<th>ID</th>
-					<th>Nome</th>
-					<th>Login</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let usuario of usuarios">
-					<td>{{usuario.id}}</td>
-					<td>{{usuario.nome}}</td>
-					<td>{{usuario.login}}</td>					
-				</tr>
-			</tbody>
-		</table>
-	</div>
+<div class="container">
+	<h1>Usuarios cadastrados</h1>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Login</th>
+				<th>Deletar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let usuario of usuarios">
+				<td>{{usuario.id}}</td>
+				<td>{{usuario.nome}}</td>
+				<td>{{usuario.login}}</td>
+				<td><button (click)="deleteUsuario(usuario.id)" class="btn btn-info">Deletar</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
