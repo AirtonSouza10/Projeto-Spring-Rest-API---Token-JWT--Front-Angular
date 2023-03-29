@@ -2,12 +2,14 @@
 	<h1>Usuarios cadastrados</h1>
 
 	<form class="form-inline">
-	<div class="form-group mx-sm-3 mb-2">
-		<input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome" placeholder="Pesquisa por nome">
-	</div>
-	<button type="button" (click)="consultarUser()" class="btn btn-success mb-2">Buscar</button>
+		<div class="form-group mx-sm-3 mb-2">
+			<input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome"
+				placeholder="Pesquisa por nome">
+		</div>
+		<button type="button" (click)="consultarUser()" class="btn btn-success mb-2">Buscar</button>
 
-	<button type="button" [routerLink]="['/usuarioAdd']" routerLinkActive="router-link-active" style="margin-left: 5px;"  class="btn btn-info mb-2">Novo</button>
+		<button type="button" [routerLink]="['/usuarioAdd']" routerLinkActive="router-link-active"
+			style="margin-left: 5px;" class="btn btn-info mb-2">Novo</button>
 	</form>
 
 
@@ -28,7 +30,8 @@
 				<td>{{usuario.nome}}</td>
 				<td>{{usuario.login}}</td>
 				<td><button (click)="deleteUsuario(usuario.id)" class="btn btn-danger">Deletar</button></td>
-				<td><button [routerLink]="['/usuarioAdd',usuario.id]" routerLinkActive="router-link-active"  class="btn btn-warning">Editar</button></td>
+				<td><button [routerLink]="['/usuarioAdd',usuario.id]" routerLinkActive="router-link-active"
+						class="btn btn-warning">Editar</button></td>
 			</tr>
 		</tbody>
 	</table>
