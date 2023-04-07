@@ -5,39 +5,67 @@
 		<div class="row">
 			<div class="col-md-1">
 				<label for="id">ID</label>
-				<span style="color: red; font-size:23px;" *ngIf="loginValidate.invalid">  </span>
+				<span style="color: red; font-size:23px;" *ngIf="loginValidate.invalid"> </span>
 				<input type="text" [(ngModel)]="usuario.id" class="form-control" id="id" name="id" readonly="true"
 					autocomplete="false">
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<label for="nome">Nome</label>
 				<span style="color: red; font-size:23px;" *ngIf="nomeValidate.invalid"> *</span>
-				<input type="text" [(ngModel)]="usuario.nome" #nomeValidate="ngModel" class="form-control" id="nome" name="nome"
-					autocomplete="false" required>
+				<input type="text" [(ngModel)]="usuario.nome" #nomeValidate="ngModel" class="form-control" id="nome"
+					name="nome" autocomplete="false" required>
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<label for="login">Login</label>
 				<span style="color: red; font-size:23px;" *ngIf="loginValidate.invalid"> *</span>
-				<input type="text" [(ngModel)]="usuario.login" #loginValidate="ngModel" class="form-control" id="login" name="login"
-					autocomplete="false" required>
+				<input type="text" [(ngModel)]="usuario.login" #loginValidate="ngModel" class="form-control" id="login"
+					name="login" autocomplete="false" required>
 			</div>
 
 			<div class="col-md-3">
 				<label for="senha">Senha</label>
 				<span style="color: red; font-size:23px;" *ngIf="senhaValidate.invalid"> *</span>
-				<input type="password" [(ngModel)]="usuario.senha" #senhaValidate="ngModel" class="form-control" id="senha" name="senha"
-					autocomplete="false" required>
+				<input type="password" [(ngModel)]="usuario.senha" #senhaValidate="ngModel" class="form-control"
+					id="senha" name="senha" autocomplete="false" required>
 			</div>
 
 
-			<div class="col-md-6" style="padding: 20px;">
+			<div class="card text-center col-md-12" style="margin: 5px;padding: 1px;">
+				<div class="card-header">
+					Telefone de contato
+				</div>
+				<div class="card-body">
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<input type="text" class="form-control" [(ngModel)]="telefone.numero" id="numero" name="numero">
+						</div>
+						<div class="form-group col-md-2">
+							<button class="btn btn-primary" (click)="addFone()">Adicionar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12" style="margin:1px">
+				<table class="table">
+					<tbody>
+						<tr *ngFor="let fone of usuario.telefones; let i = index">
+							<td>{{fone.id}}</td>
+							<td>{{fone.numero}}</td>
+							<td><button class="btn btn-danger" (click)="deletarTelefone(fone.id, i)">Delete</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-md-6" style="padding: 1px;">
 				<button type="button" class="btn btn-primary" [routerLink]="['/usuarioList']"
 					routerLinkActive="router-link-active">Voltar</button>
-				<button type="button" class="btn btn-primary" (click)="novo()" style="margin: 10px;">Novo</button>
+				<button type="button" class="btn btn-primary" (click)="novo()" style="margin: 1px;">Novo</button>
 				<button type="button" class="btn btn-primary" [disabled]="formValidate.invalid" (click)="salvarUser()"
-					style="margin: 10px;">Salvar</button>
+					style="margin: 1px;">Salvar</button>
 			</div>
 		</div>
 
