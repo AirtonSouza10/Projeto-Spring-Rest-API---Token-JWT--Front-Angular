@@ -16,6 +16,10 @@ export class UsuarioService {
     return this.http.get<any>(AppConstants.baseUrl);
   }
 
+  getUsuarioListPage(pagina): Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrl + 'page/' + pagina);
+  }
+
   getUsuario(id): Observable<any> {
     return this.http.get<any>(AppConstants.baseUrl + id);
   }
@@ -31,6 +35,11 @@ export class UsuarioService {
     return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome);
   }
 
+  consultarUserporPage(nome: String, page: Number): Observable<any> {
+
+    return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome + "/page/" + page);
+  }
+
 
   salvarUsuario(user): Observable<any> {
     return this.http.post<any>(AppConstants.baseUrl, user);
@@ -41,7 +50,7 @@ export class UsuarioService {
   }
 
   removerTelefone(id): Observable<any> {
-    return this.http.delete(AppConstants.baseUrl + "removerTelefone/" + id, {responseType: 'text'});
+    return this.http.delete(AppConstants.baseUrl + "removerTelefone/" + id, { responseType: 'text' });
   }
 
 

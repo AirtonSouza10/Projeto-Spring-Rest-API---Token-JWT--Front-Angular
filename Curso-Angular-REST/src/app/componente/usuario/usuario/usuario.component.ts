@@ -10,8 +10,9 @@ import { User } from 'src/app/model/user';
 })
 export class UsuarioComponent implements OnInit {
 
-  usuarios: Observable<User[]>;
+  usuarios: Array<User[]>;
   nome: String;
+  total: Number;
 
   constructor(private usuarioService: UsuarioService) {
 
@@ -19,21 +20,24 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioService.getUsuarioList().subscribe(data => {
-      this.usuarios = data;
+      this.usuarios = data.content;
+      this.total = data.totalElements;
     });
 
   }
 
-  deleteUsuario(id: Number) {
+  deleteUsuario(id: Number, index) {
 
     if (confirm('Deseja mesmo remover?')) {
 
       this.usuarioService.deletarUsuario(id).subscribe(data => {
-        console.log("Retorno do método delete: " + data);
+        // console.log("Retorno do método delete: " + data);
 
-        this.usuarioService.getUsuarioList().subscribe(data => {
-          this.usuarios = data;
-        });
+        this.usuarios.splice(index, 1);//remove da tela o item excluido
+
+        // this.usuarioService.getUsuarioList().subscribe(data => {
+        //  this.usuarios = data;
+        // });
 
       });
 
@@ -41,14 +45,37 @@ export class UsuarioComponent implements OnInit {
   }
 
   consultarUser() {
-    this.usuarioService.consultarUser(this.nome).subscribe(data => {
 
-      this.usuarios = data;
+    if (this.nome === '') {
+      this.usuarioService.getUsuarioList().subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
+    } else {
 
-    });
+      this.usuarioService.consultarUser(this.nome).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
+
+    }
   }
 
+  carregarPagina(pagina) {
 
+    if (this.nome !== '') {
+      this.usuarioService.consultarUserporPage(this.nome, (pagina - 1)).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
+    } else {
+      this.usuarioService.getUsuarioListPage(pagina - 1).subscribe(data => {
+        this.usuarios = data.content;
+        this.total = data.totalElements;
+      });
 
+    }
+
+  }
 
 }
