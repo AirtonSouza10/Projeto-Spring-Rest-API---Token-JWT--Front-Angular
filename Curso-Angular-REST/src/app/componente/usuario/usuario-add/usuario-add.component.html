@@ -1,5 +1,5 @@
 <div class="container">
-	<h3>Tela de Usu·rio</h3>
+	<h3>Tela de Usuario</h3>
 
 	<form #formValidate="ngForm">
 		<div class="row">
@@ -52,45 +52,64 @@
 				</div>
 			</div>
 
+			<div class="col-md-3">
+				<label for="profissao">Profissao</label>
+				<span style="color: red; font-size:23px;" *ngIf="profissaoValidate.invalid"> *</span>
+
+				<select class="form-control" [(ngModel)]="usuario.profissao.id" id="profissao" name="profissao"
+					#profissaoValidate="ngModel" required>
+					<option [ngValue]="p.id" *ngFor="let p of profissoes">{{p.descricao}}</option>
+				</select>
+			</div>
+			<div class="col-md-3">
+				<label for="salario">Sal√°rio</label>
+				<span style="color: red; font-size:23px;" *ngIf="salarioValidate.invalid"> *</span>
+				<input type="text" currencyMask [options]="{prefix : 'R$', thousands: '.', decimal : ','}"
+					[(ngModel)]="usuario.salario" #salarioValidate="ngModel" class="form-control" id="salario"
+					name="salario" autocomplete="false" required>
+			</div>
+
+
+
 
 			<div class=" card text-center col-md-12" style="margin: 5px;padding: 1px;">
-						<div class="card-header">
-							Telefone de contato
-						</div>
-						<div class="card-body">
-							<div class="form-row">
-								<div class="form-group col-md-3">
-									<input type="text" mask="(00) 0 0000-0000" class="form-control"
-										[(ngModel)]="telefone.numero" id="numero" name="numero">
-								</div>
-								<div class="form-group col-md-2">
-									<button class="btn btn-primary" (click)="addFone()">Adicionar</button>
-								</div>
-							</div>
-						</div>
+				<div class="card-header">
+					Telefone de contato
 				</div>
-
-				<div class="col-md-12" style="margin:1px">
-					<table class="table">
-						<tbody>
-							<tr *ngFor="let fone of usuario.telefones; let i = index">
-								<td>{{fone.id}}</td>
-								<td>{{fone.numero | mask:'(00) 0 0000-0000'}}</td>
-								<td><button class="btn btn-danger" (click)="deletarTelefone(fone.id, i)">Delete</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				<div class="col-md-6" style="padding: 1px;">
-					<button type="button" class="btn btn-primary" [routerLink]="['/usuarioList']"
-						routerLinkActive="router-link-active">Voltar</button>
-					<button type="button" class="btn btn-primary" (click)="novo()" style="margin: 1px;">Novo</button>
-					<button type="button" class="btn btn-primary" [disabled]="formValidate.invalid"
-						(click)="salvarUser()" style="margin: 1px;">Salvar</button>
+				<div class="card-body">
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<input type="text" mask="(00) 0 0000-0000" class="form-control"
+								[(ngModel)]="telefone.numero" id="numero" name="numero">
+						</div>
+						<div class="form-group col-md-2">
+							<button class="btn btn-primary" (click)="addFone()">Adicionar</button>
+						</div>
+					</div>
 				</div>
 			</div>
+
+			<div class="col-md-12" style="margin:1px">
+				<table class="table">
+					<tbody>
+						<tr *ngFor="let fone of usuario.telefones; let i = index">
+							<td>{{fone.id}}</td>
+							<td>{{fone.numero | mask:'(00) 0 0000-0000'}}</td>
+							<td><button class="btn btn-danger" (click)="deletarTelefone(fone.id, i)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-md-6" style="padding: 1px;">
+				<button type="button" class="btn btn-primary" [routerLink]="['/usuarioList']"
+					routerLinkActive="router-link-active">Voltar</button>
+				<button type="button" class="btn btn-primary" (click)="novo()" style="margin: 1px;">Novo</button>
+				<button type="button" class="btn btn-primary" [disabled]="formValidate.invalid" (click)="salvarUser()"
+					style="margin: 1px;">Salvar</button>
+			</div>
+		</div>
 
 	</form>
 </div>

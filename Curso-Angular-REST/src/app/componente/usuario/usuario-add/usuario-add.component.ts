@@ -4,6 +4,9 @@ import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Telefone } from 'src/app/model/telefone';
 import { NgbDateParserFormatter, NgbDateStruct, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { Profissao } from 'src/app/model/Profissao';
+
+
 
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string>{
@@ -79,14 +82,22 @@ function validarDia(valor) {
   providers: [{ provide: NgbDateParserFormatter, useClass: FormataData },
   { provide: NgbDateAdapter, useClass: FormatDateAdapter }]
 })
+
 export class UsuarioAddComponent implements OnInit {
 
   usuario = new User();
   telefone = new Telefone();
+  profissoes: Array<Profissao>;
 
   constructor(private routeActive: ActivatedRoute, private userService: UsuarioService) { }
 
+
   ngOnInit() {
+
+    this.userService.getProfissaoList().subscribe(data => {
+      this.profissoes = data;
+    });
+
     let id = this.routeActive.snapshot.paramMap.get('id');
 
     if (id != null) {
