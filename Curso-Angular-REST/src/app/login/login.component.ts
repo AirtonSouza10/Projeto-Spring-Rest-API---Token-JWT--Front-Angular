@@ -18,6 +18,11 @@ export class LoginComponent implements OnInit {
   }
 
 
+  public recuperar() {
+    this.loginService.recuperar(this.usuario.login);
+  }
+
+
   ngOnInit() {
     if (localStorage.getItem('token') !== null
       && localStorage.getItem('token').toString().trim() !== null) {
